@@ -30,4 +30,5 @@ int main()
     
     std::copy(copy_from_this.begin(), copy_from_this.end(), to_this_container.begin());             // Since to_this_container is an empty vector, it's UB
     std::copy(copy_from_this.begin(), copy_from_this.end(), std::back_inserter(to_this_container)); // Valid
+    print(to_this_container);
 }
