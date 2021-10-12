@@ -1,0 +1,33 @@
+// Any recommendation on this code would be appreciated!
+
+#include <iostream>
+#include <string>
+#include <vector>
+#include <nutility.h> // Header file created by https://github.com/necatiergin
+
+template<typename input_iter, typename output_iter> // Same as STL std::copy
+output_iter Copy(input_iter begin_iter, input_iter end_iter, output_iter destbeg)
+{
+    while (begin_iter != end_iter) {
+        *destbeg++ = *begin_iter++;
+    }
+    return destbeg;
+}
+
+template<typename C, typename F> // A function template that randomly fills a container
+void random_fill(C& param_container, size_t size, F frand)
+{
+    while (param_container.size() < size)
+        param_container.insert(param_container.end(), frand());
+}
+
+int main()
+{
+    std::vector<std::string> copy_from_this;
+    std::vector<std::string> to_this_container;
+    random_fill(copy_from_this, 10, rname); // Randomly fills a container with random names listed in nutility.h file.
+    print(copy_from_this);
+    
+    std::copy(copy_from_this.begin(), copy_from_this.end(), to_this_container.begin());             // Since to_this_container is an empty vector, it's UB
+    std::copy(copy_from_this.begin(), copy_from_this.end(), std::back_inserter(to_this_container)); // Valid
+}
